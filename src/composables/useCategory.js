@@ -1,7 +1,9 @@
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import useCards from "./useCards";
 
 export default function useCategory() {
+  const route = useRoute();
   const { allCards } = useCards();
   let uniqueCategories = new Set();
 
@@ -12,11 +14,19 @@ export default function useCategory() {
     });
   });
 
-  const category = "wife";
+  const category = ref(route.params.category);
+  watch(
+    () => route.params.category,
+    () => {
+      category.value = route.params.category;
+    }
+  );
   const cardsByCategory = computed(() => {
-    if (category === "all") return allCards.value;
+    if (category.value === "all") return allCards.value;
 
-    return allCards.value.filter((card) => card.categories.includes(category));
+    return allCards.value.filter((card) =>
+      card.categories.includes(category.value)
+    );
   });
 
   return { uniqueCategories, cardsByCategory };
