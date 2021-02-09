@@ -12,7 +12,7 @@ const routes = [
     component: AppHome,
   },
   {
-    path: "/category",
+    path: "/category/:category",
     name: "Category",
     component: Category,
   },
