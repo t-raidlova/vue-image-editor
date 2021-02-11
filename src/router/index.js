@@ -17,7 +17,7 @@ const routes = [
     component: Category,
   },
   {
-    path: "/create",
+    path: "/create/:id/:page",
     name: "Create",
     component: Create,
   },

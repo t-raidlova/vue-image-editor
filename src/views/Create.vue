@@ -1,3 +1,39 @@
 <template>
-  <h1>create</h1>
+  <div class="card_wrapper">
+    {{ selectedCard }}
+    <section><CardPreview></CardPreview></section>
+    <section><CardEdit></CardEdit></section>
+  </div>
 </template>
+
+<script>
+import CardPreview from "@/components/card/CardPreview.vue";
+import CardEdit from "@/components/card/CardEdit.vue";
+import useCurrentCard from "../composables/useCurrentCard";
+
+export default {
+  components: {
+    CardPreview,
+    CardEdit,
+  },
+  setup() {
+    const { selectedCard } = useCurrentCard();
+    return {
+      selectedCard,
+    };
+  },
+};
+</script>
+
+<style scoped>
+.card_wrapper {
+  display: flex;
+  background: #eee;
+  box-shadow: 1px 1px 2px #ddd inset;
+}
+
+.card_wrapper > section {
+  flex: 1;
+  padding: 10px;
+}
+</style>

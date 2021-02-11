@@ -30,4 +30,22 @@ li a {
   list-style: none;
   color: inherit;
 }
+
+@media (min-width: 600px) {
+  .grid_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+img {
+  max-width: 100%;
+}
 </style>

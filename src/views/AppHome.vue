@@ -23,3 +23,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.category_item {
+  background: linear-gradient(30deg, rgb(253, 207, 207), rgb(140, 140, 236));
+  padding: 6rem 0;
+}
+
+ul {
+  margin-top: 2rem;
+}
+
+li a {
+  font-size: 20px;
+}
+</style>

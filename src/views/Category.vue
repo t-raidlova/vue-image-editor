@@ -2,7 +2,12 @@
   <h1>category: {{ $route.params.category }}</h1>
   <ul class="grid_wrapper">
     <li v-for="card in cardsByCategory" :key="card.id">
-      <router-link to="/">{{ card.name }}</router-link>
+      <router-link :to="`/create/${card.id}/front`">
+        <img
+          :src="require(`@/assets/images/card-previews/${card.id}.jpg`)"
+          alt="preview"
+        />
+      </router-link>
     </li>
   </ul>
 </template>
