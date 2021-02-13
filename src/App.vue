@@ -48,4 +48,11 @@ li a {
 img {
   max-width: 100%;
 }
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
 </style>

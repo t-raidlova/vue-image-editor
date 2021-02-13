@@ -1,11 +1,13 @@
 <template>
   <div v-for="section in selectedPage.sections" :key="section.id">
-    {{ section.userInput }}
-  </div></template
->
+    <TextInput :section="section" /></div
+></template>
 
 <script>
+import TextInput from "@/components/card/TextInput";
+
 export default {
+  components: { TextInput },
   props: {
     selectedPage: {
       type: Object,
