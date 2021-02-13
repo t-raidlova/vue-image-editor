@@ -1,8 +1,8 @@
 <template>
   <div class="card_wrapper">
-    {{ selectedCard }}
-    <section><CardPreview></CardPreview></section>
-    <section><CardEdit></CardEdit></section>
+    <SwitchPage />
+    <section><CardPreview :selectedPage="selectedPage"></CardPreview></section>
+    <section><CardEdit :selectedPage="selectedPage"></CardEdit></section>
   </div>
 </template>
 
@@ -10,16 +10,18 @@
 import CardPreview from "@/components/card/CardPreview.vue";
 import CardEdit from "@/components/card/CardEdit.vue";
 import useCurrentCard from "../composables/useCurrentCard";
+import SwitchPage from "@/components/card/SwitchPage.vue";
 
 export default {
   components: {
     CardPreview,
     CardEdit,
+    SwitchPage,
   },
   setup() {
-    const { selectedCard } = useCurrentCard();
+    const { selectedPage } = useCurrentCard();
     return {
-      selectedCard,
+      selectedPage,
     };
   },
 };
