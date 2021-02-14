@@ -1,10 +1,20 @@
 <template>
-  {{ currentSection }}
   <div
     class="text-input-wrapper"
     @mouseover="showOptions = true"
     @mouseout="showOptions = false"
   >
+    <section class="text-input-header">
+      <div>
+        <button @click="updateSectionOrder(sectionIndex, -1)">
+          <img src="@/assets/icons/arrow-up.svg" alt="arrow up" />
+        </button>
+        <button @click="updateSectionOrder(sectionIndex, 1)">
+          <img src="@/assets/icons/arrow-down.svg" alt="arrow down" />
+        </button>
+      </div>
+      <button @click="removeSection(sectionIndex)">x</button>
+    </section>
     <textarea v-model="currentSection.userInput" cols="50" rows="4"></textarea>
     <div class="menu" v-show="showOptions">
       <!-- MENU ↑ -->
@@ -38,10 +48,10 @@
 
       <!-- MENU ↔ -->
       <div class="menu-middle">
-        <button>
+        <button @click="changeHeight(100)">
           <img src="@/assets/icons/arrow-up.svg" alt="arrow up" />
         </button>
-        <button>
+        <button @click="changeHeight(-100)">
           <img src="@/assets/icons/arrow-down.svg" alt="arrow down" />
         </button>
       </div>
@@ -113,16 +123,42 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import useCurrentCard from "@/composables/useCurrentCard";
 
 export default {
   props: {
     section: Object,
+    sectionIndex: Number,
   },
   setup(props) {
     const currentSection = ref({ ...props.section });
     const showOptions = ref(false);
-    return { currentSection, showOptions };
+    const { updateCard, removeSection, updateSectionOrder } = useCurrentCard();
+
+    watch(currentSection.value, update);
+
+    function update() {
+      updateCard(props.sectionIndex, currentSection.value);
+    }
+
+    function changeHeight(value) {
+      let currentHeight = currentSection.value.height;
+      if (
+        (currentHeight === 100 && value === -100) ||
+        (currentHeight === 600 && value === 100)
+      )
+        return;
+
+      currentSection.value.height = currentHeight + value;
+    }
+    return {
+      currentSection,
+      showOptions,
+      removeSection,
+      updateSectionOrder,
+      changeHeight,
+    };
   },
 };
 </script>
@@ -184,5 +220,16 @@ textarea {
 
 select {
   margin-right: 5px;
+}
+
+.text-input-header {
+  display: flex;
+  justify-content: space-between;
+  pad: 5px;
+}
+
+.text-input-header img {
+  width: 15px;
+  padding-right: 5px;
 }
 </style>

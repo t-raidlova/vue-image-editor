@@ -55,4 +55,9 @@ button {
   cursor: pointer;
   font-size: 14px;
 }
+
+button:hover,
+li:hover {
+  color: rgb(108, 108, 241);
+}
 </style>

@@ -1,5 +1,10 @@
 <template>
-  <p :style="cssObject">{{ section.userInput }}</p>
+  <p
+    :style="cssObject"
+    :class="{ bold: section.isBold, italic: section.isItalic }"
+  >
+    {{ section.userInput }}
+  </p>
 </template>
 
 <script>
@@ -26,3 +31,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+</style>

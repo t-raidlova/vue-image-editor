@@ -1,5 +1,6 @@
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import { v4 as uuidv4 } from "uuid";
 import useCards from "./useCards";
 
 export default function useCurrentCard() {
@@ -27,11 +28,62 @@ export default function useCurrentCard() {
     }
   );
 
+  function updateCard(sectionIndex, data) {
+    selectedCard.value.pages[getIndex()].sections[sectionIndex] = data;
+  }
+
   //destructure array
   [selectedCard.value] = allCards.value.filter(
     //route params - always string!
     (card) => card.id === Number(route.params.id)
   );
 
-  return { selectedCard, selectedPage };
+  function addSection() {
+    if (selectedPage.value.sections.lenght >= 4) return;
+
+    const newSection = {
+      id: uuidv4(),
+      userInput: "Enter your text here...",
+      height: 200,
+      color: "#9f9f32",
+      fontFamily: "Verdana",
+      fontSize: "2.5rem",
+      isItalic: true,
+      isBold: false,
+      justifyContent: "center",
+      alignItems: "center",
+    };
+
+    selectedCard.value.pages[getIndex()].sections.push(newSection);
+  }
+
+  function removeSection(sectionIndex) {
+    selectedCard.value.pages[getIndex()].sections.splice(sectionIndex, 1);
+  }
+
+  function updateSectionOrder(sectionIndex, direction) {
+    const arr = selectedCard.value.pages[getIndex()].sections;
+
+    // check if first or last section is selected
+    if (
+      selectedCard.value.pages[getIndex()].sections[
+        sectionIndex + direction
+      ] === undefined
+    )
+      return;
+
+    [arr[sectionIndex], arr[sectionIndex + direction]] = [
+      arr[sectionIndex + direction],
+      arr[sectionIndex],
+    ];
+  }
+
+  return {
+    selectedCard,
+    selectedPage,
+    updateCard,
+    addSection,
+    removeSection,
+    updateSectionOrder,
+  };
 }
