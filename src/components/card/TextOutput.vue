@@ -33,6 +33,11 @@ export default {
 </script>
 
 <style scoped>
+p {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .bold {
   font-weight: bold;
 }

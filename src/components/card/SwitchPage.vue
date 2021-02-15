@@ -34,3 +34,21 @@
     </ul>
   </nav>
 </template>
+
+<style scoped>
+ul {
+  display: flex;
+  margin: 1.6rem 0;
+}
+
+.page-select {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+img {
+  max-width: 30px;
+  margin-left: 10px;
+}
+</style>

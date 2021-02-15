@@ -78,6 +78,19 @@ export default function useCurrentCard() {
     ];
   }
 
+  function updateImage(url) {
+    selectedCard.value.pages[getIndex()].background = url;
+    selectedCard.value.pages[getIndex()].backgroundPosition = "center";
+  }
+
+  function repositionImage(position) {
+    selectedCard.value.pages[getIndex()].backgroundPosition = position;
+  }
+
+  function removeImage() {
+    selectedCard.value.pages[getIndex()].background = "";
+  }
+
   return {
     selectedCard,
     selectedPage,
@@ -85,5 +98,8 @@ export default function useCurrentCard() {
     addSection,
     removeSection,
     updateSectionOrder,
+    updateImage,
+    repositionImage,
+    removeImage,
   };
 }

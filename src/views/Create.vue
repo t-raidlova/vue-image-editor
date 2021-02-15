@@ -1,6 +1,6 @@
 <template>
+  <SwitchPage />
   <div class="card_wrapper">
-    <SwitchPage />
     <section><CardPreview :selectedPage="selectedPage"></CardPreview></section>
     <section><CardEdit :selectedPage="selectedPage"></CardEdit></section>
   </div>

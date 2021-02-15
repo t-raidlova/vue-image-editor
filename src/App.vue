@@ -24,6 +24,11 @@ export default {
   padding: 0;
 }
 
+input,
+textarea {
+  font-family: inherit;
+}
+
 li,
 li a {
   text-decoration: none;
@@ -59,5 +64,13 @@ button {
 button:hover,
 li:hover {
   color: rgb(108, 108, 241);
+}
+
+.image-upload-wrapper,
+.text-input-wrapper {
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 2px 2px #ddd inset;
+  border-radius: 3px;
 }
 </style>

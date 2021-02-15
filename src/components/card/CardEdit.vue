@@ -1,4 +1,5 @@
 <template>
+  <ImageUpload />
   <div class="add_section_wrapper">
     <button v-if="selectedPage.sections?.length < 4" @click="addSection()">
       Add new text section
@@ -12,9 +13,10 @@
 <script>
 import TextInput from "@/components/card/TextInput";
 import useCurrentCard from "@/composables/useCurrentCard";
+import ImageUpload from "@/components/card/ImageUpload";
 
 export default {
-  components: { TextInput },
+  components: { TextInput, ImageUpload },
   props: {
     selectedPage: {
       type: Object,
